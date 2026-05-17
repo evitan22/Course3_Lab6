@@ -1,0 +1,37 @@
+{
+  "name": "course3_lab5",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/evitan22/Course3_Lab5#readme",
+  "bugs": {
+    "url": "https://github.com/evitan22/Course3_Lab5/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evitan22/Course3_Lab5.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
+  }
+}
