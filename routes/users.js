@@ -3,8 +3,6 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-
-// Імпортуємо кеш та секрет із головного сервера (ми їх експортуємо нижче)
 const { cache, SECRET_KEY } = require('../server'); 
 const User = require('../models/User');
 
@@ -134,22 +132,18 @@ router.post(
         try {
             const { email, password } = req.body;
 
-            // Перевіряємо унікальність email
             const existingUser = await User.findOne({ where: { email } });
             if (existingUser) {
                 return res.status(400).json({ message: 'Цей email вже зареєстрований' });
             }
 
-            // Хешуємо пароль для безпеки
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            // Зберігаємо в MySQL через Sequelize
             const user = await User.create({
                 email,
                 password: hashedPassword
             });
 
-            // Повертаємо створеного юзера без пароля
             res.status(201).json({
                 id: user.id,
                 email: user.email,
@@ -157,7 +151,6 @@ router.post(
             });
         } catch (error) {
             console.error(error);
-            // Повертаємо реальний текст помилки в Postman для діагностики
             res.status(500).json({ 
                 message: 'Помилка на сервері при створенні користувача',
                 error: error.message,
@@ -177,5 +170,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Експортуємо роутер, щоб server.js міг його підключити
 module.exports = router;
